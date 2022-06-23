@@ -108,7 +108,7 @@ func main() {
 	var ts tailscalesd.MultiDiscoverer
 	if useLocalAPI {
 		ts = append(ts, &tailscalesd.RateLimitedDiscoverer{
-			Wrap:      tailscalesd.LocalAPI(tailscalesd.LocalAPISocket),
+			Wrap:      tailscalesd.LocalAPI(localAPISocket),
 			Frequency: pollLimit,
 		})
 	}
