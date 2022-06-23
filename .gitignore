@@ -8,4 +8,4 @@
 *.test
 *.yaml
 *.yml
-tailscalesd
+/tailscalesd
