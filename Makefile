@@ -4,9 +4,9 @@ PLATFORMS := linux-arm6 linux-arm7 linux-amd64 linux-386 darwin-amd64
 VERSION := $(shell git describe --always --tags --dirty="-dev-$$(git rev-parse --short HEAD)")
 MAIN := ./cmd/tailscalesd
 
-BUILDCMD := CGO_ENABLED=0 go build -o
+BUILDCMD := env CGO_ENABLED=0 go build -o
 ifneq ($(strip $(VERSION)),)
-	BUILDCMD := CGO_ENABLED=0 go build -ldflags="-X 'main.Version=$(VERSION)'" -o
+	BUILDCMD := env CGO_ENABLED=0 go build -ldflags="-X 'main.Version=$(VERSION)'" -o
 endif
 
 
