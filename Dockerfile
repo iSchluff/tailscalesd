@@ -1,4 +1,4 @@
-FROM golang:1.18 AS builder
+FROM golang:1.20 AS builder
 LABEL maintainer="Simon Elsbrock <simon@iodev.org>"
 LABEL org.opencontainers.image.description="Prometheus Service Discovery for Tailscale"
 
