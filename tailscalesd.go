@@ -13,6 +13,7 @@ import (
 	"log"
 	"net"
 	"net/http"
+	"time"
 )
 
 const (
@@ -181,7 +182,9 @@ func (h *discoveryHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		serveAndLog(w, "Attempted to serve with an improperly initialized handler.")
 		return
 	}
-	devices, err := h.d.Devices(r.Context())
+	ctx, cancel := context.WithTimeout(r.Context(), 10*time.Second)
+	defer cancel()
+	devices, err := h.d.Devices(ctx)
 	if err != nil {
 		if err != errStaleResults {
 			w.WriteHeader(http.StatusInternalServerError)
